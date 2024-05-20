@@ -1,15 +1,14 @@
-import { useState } from 'react'
 import './App.css'
-import {CardFront} from './components/card_front'
-import {CardBack} from './components/card_back'
+import CardFront from './components/CardFront'
+import CardBack from './components/CardBack'
 
 function App() {
 
   return (
     <>
       <div>
-        <CardFront />
-        <CardBack />
+        <h1>project</h1>
+        {!<CardFront />? <CardBack />: <CardFront />}
       </div>
     </>
   )

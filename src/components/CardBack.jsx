@@ -3,8 +3,9 @@ import card_back from "../assets/card_back.png"
 
 export default function CardBack(){
     return(
-        <img src="card_back">
-            <h3>English def</h3>
-        </img>
+        <div>
+            <h1>back</h1>
+        </div>
+        
     )
 }
