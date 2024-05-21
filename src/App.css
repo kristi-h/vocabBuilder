@@ -1,12 +1,49 @@
-/* #root {
+#root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  background-color: beige;
+}
+
+.title {
+
+}
+/* body {
+  background-image: url("./assets/card_front.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 6px 180px;
+  margin: 0 auto; 
+  padding: 2rem 2rem;
+  background-color: beige;
 } */
 
-body {
-  background-image: url("./assets/card_front.png");
+.card img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+ }
+
+.vocab{
+  margin-top: 4rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
+}
+
+button {
+  margin-top: 1em;
+  padding: 1em 1em;
+  border-radius: 50%;
+  border-radius: 50% 20% / 10% 40%;
+}
+
+#right-btn {
+  margin-left: 1em;
 }
 
 /* .logo {
