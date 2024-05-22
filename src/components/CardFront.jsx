@@ -3,12 +3,12 @@ import right from "../assets/right.png"
 import wrong from "../assets/wrong.png"
 import cardfront from "../assets/card_front.png"
 
-export default function CardFront(){
+export default function CardFront({currWord, children}){
     return(
         <div className="card" id="card-front">
             <img src={cardfront}></img>
             <div className="vocab">
-            <h3>english word</h3>
+            <h3>{currWord.english}</h3>
             </div>
 
             <div className="buttons">
