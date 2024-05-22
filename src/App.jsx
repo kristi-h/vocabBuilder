@@ -27,11 +27,18 @@ export default function App() {
   function getRandWord() {
     const randIndex = Math.floor(Math.random * data.length)
     const randWord = toLearn[randIndex]
-    setCurrWord(prev=> {
-      chinese: randWord.chinese,
-      pinyin: randWord.pinyin,
-      english: randWord.english
-  })
+    setCurrWord(randWord=> {
+      chinese: randWord.chinese;
+      pinyin: randWord.pinyin;
+      english: randWord.english,
+    })
+
+  function flipCard() {
+    <CardBack 
+      chinese= {currWord.chinese}
+      pinyin= {currWord.pinyin}
+      />
+  }
 
   function handleCorrectBtn(){
       setToLearn(prev => {
@@ -54,9 +61,9 @@ return (
   <>
     <div>
       <h1 className='title'>Vocabulary Builder</h1>
-      {!<CardFront />? <CardBack />: <CardFront
-        currentWord= {currWord}
-        />}
+      <CardFront
+        english= {currWord.english}
+      />
     </div>
     <p>{getRandWord}</p>
   </>
