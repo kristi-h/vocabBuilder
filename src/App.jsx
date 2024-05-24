@@ -2,72 +2,80 @@ import React from 'react'
 import './App.css'
 import CardFront from './components/CardFront'
 import CardBack from './components/CardBack'
-// import file from './data.csv'
-import hsk3 from './hsk3.csv'
-import * as Papa from 'papaparse';
+import Buttons from './components/Buttons'
+import {hsk3} from './data'
 
 export default function App() {
   const [currWord, setCurrWord] = React.useState({
-  chinese: "",
-  pinyin: "",
-  english: ""
+  Chinese: "",
+  Pinyin: "",
+  English: "",
+  flipped: false,
+  correct: false
   }) 
-
-  const [toLearn, setToLearn] = React.useState(data)
-
-  React.useEffect(()=> {
-    fetch( hsk3 )
-    .then( response => response.text() )
-    .then( responseText => {
-        var data = Papa.parse(responseText);
-        console.log('data:', data);
-    });
-  }, []) 
+  
+  const [toLearn, setToLearn] = React.useState(hsk3)
+  console.log(currWord)
 
   function getRandWord() {
-    const randIndex = Math.floor(Math.random * data.length)
+    const randIndex = Math.floor(Math.random * toLearn.length)
     const randWord = toLearn[randIndex]
-    setCurrWord(randWord=> {
-      chinese: randWord.chinese;
-      pinyin: randWord.pinyin;
-      english: randWord.english,
-    })
-
+    console.log(randWord)
+    setCurrWord(randWord=> ({
+      Chinese: randWord.Chinese,
+      Pinyin: randWord.Pinyin,
+      English: randWord.English,
+      flipped: false,
+      correct: false
+    }))
+  }
   function flipCard() {
-    <CardBack 
-      chinese= {currWord.chinese}
-      pinyin= {currWord.pinyin}
-      />
+    setCurrWord(prev => ({
+      ...prev, 
+      flippped: !prev.flipped
+    }))
   }
 
-  function handleCorrectBtn(){
-      setToLearn(prev => {
-        prev.filter(currentWord=>!currentWord)
-      })
-      getRandWord(toLearn)
-  }
+  // function correctBtn(){
+  //     setToLearn(prev => ({
+  //       prev.filter(currentWord=>!currentWord)
+  //     }))
+  //     getRandWord(toLearn)
+  // }
 
-  function handleIncorrectBtn(){
-      getRandWord(toLearn)
-  }
+  // function incorrectBtn(){
+  //     getRandWord(toLearn)
+  // }
 
-  function endOfDeck(){
-    if (toLearn.length === 0) {
-      return "Deck completed: last word!"
-    }
-  }
+  // function endOfDeck(){
+  //   if (toLearn.length === 0) {
+  //     return "Deck completed: last word!"
+  //   }
+  // }
 
 return (
-  <>
-    <div>
-      <h1 className='title'>Vocabulary Builder</h1>
-      <CardFront
-        english= {currWord.english}
-      />
-    </div>
-    <p>{getRandWord}</p>
-  </>
+<div>
+			<header>
+				<h1> Vocabulary Builder </h1>
+			</header>
+      
+      <button className="start-btn" onClick={()=>getRandWord}>Start studying!</button>
+			<div onClick= {flipCard} className={`card ${currWord.flipped? "flipped": "" }`}>
+				<div className="card-inner">
+          {currWord.flipped? 
+            <CardBack 
+              word= {currWord}
+              flip= {flipCard}
+            />
+            : <CardFront 
+              word= {currWord}
+              flip= {flipCard}
+            /> 
+          }
+				</div>
+			</div>
+      <Buttons />
+		</div>
 )
 }
 
-}

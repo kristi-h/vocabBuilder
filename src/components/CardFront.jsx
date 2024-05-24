@@ -1,20 +1,13 @@
 import React from "react"
-import right from "../assets/right.png"
-import wrong from "../assets/wrong.png"
-import cardfront from "../assets/card_front.png"
+import '../App.css'
 
-export default function CardFront({currWord}){
+
+export default function CardFront({word, flip}){
     return(
-        <div className="card" id="card-front">
-            <img src={cardfront}></img>
-            <div className="vocab">
-            <h3>{currWord.english}</h3>
+        <>
+            <div onClick={()=> flip} className="card-front">
+                <p className="unflipped">{word.English}</p>
             </div>
-
-            <div className="buttons">
-                <button src={wrong} id="wrong-btn">wrong</button>
-                <button src={right} id="right-btn">right</button>
-            </div>
-        </div>
+        </>
     )   
 }
