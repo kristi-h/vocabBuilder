@@ -15,25 +15,27 @@ export default function App() {
   }) 
   
   const [toLearn, setToLearn] = React.useState(hsk3)
-  console.log(currWord)
 
   function getRandWord() {
-    const randIndex = Math.floor(Math.random * toLearn.length)
+    console.log(toLearn)
+    const randIndex = Math.floor(Math.random() * toLearn.length)
+    console.log(randIndex)
     const randWord = toLearn[randIndex]
-    console.log(randWord)
-    setCurrWord(randWord=> ({
+    console.log("randword", randWord)
+    setCurrWord({
       Chinese: randWord.Chinese,
       Pinyin: randWord.Pinyin,
       English: randWord.English,
-      flipped: false,
+      flipped: true,
       correct: false
-    }))
+    })
   }
+
   function flipCard() {
-    setCurrWord(prev => ({
-      ...prev, 
-      flippped: !prev.flipped
-    }))
+    setCurrWord({
+      ...currWord,
+      flipped: !currWord.flipped
+    })
   }
 
   // function correctBtn(){
@@ -58,18 +60,18 @@ return (
 			<header>
 				<h1> Vocabulary Builder </h1>
 			</header>
-      
-      <button className="start-btn" onClick={()=>getRandWord}>Start studying!</button>
+
+      <button className="start-btn" onClick={()=>getRandWord()}>Start studying!</button>
 			<div onClick= {flipCard} className={`card ${currWord.flipped? "flipped": "" }`}>
 				<div className="card-inner">
           {currWord.flipped? 
             <CardBack 
               word= {currWord}
-              flip= {flipCard}
+              handleClick= {flipCard}
             />
             : <CardFront 
               word= {currWord}
-              flip= {flipCard}
+              handleClick= {flipCard}
             /> 
           }
 				</div>

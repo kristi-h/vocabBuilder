@@ -2,10 +2,10 @@ import React from "react"
 import '../App.css'
 
 
-export default function CardFront({word, flip}){
+export default function CardFront({word, handleClick}){
     return(
         <>
-            <div onClick={()=> flip} className="card-front">
+            <div onClick={handleClick} className="card-front">
                 <p className="unflipped">{word.English}</p>
             </div>
         </>
