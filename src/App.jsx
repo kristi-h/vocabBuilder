@@ -19,14 +19,13 @@ export default function App() {
   function getRandWord() {
     console.log(toLearn)
     const randIndex = Math.floor(Math.random() * toLearn.length)
-    console.log(randIndex)
     const randWord = toLearn[randIndex]
     console.log("randword", randWord)
     setCurrWord({
       Chinese: randWord.Chinese,
       Pinyin: randWord.Pinyin,
       English: randWord.English,
-      flipped: true,
+      flipped: false,
       correct: false
     })
   }
@@ -37,23 +36,22 @@ export default function App() {
       flipped: !currWord.flipped
     })
   }
+  function correctBtn(){
+    const newArr = toLearn.filter(word => word.English !== currWord.English) 
+    setToLearn(newArr)
+    getRandWord(newArr)
+    endOfDeck()
+}
 
-  // function correctBtn(){
-  //     setToLearn(prev => ({
-  //       prev.filter(currentWord=>!currentWord)
-  //     }))
-  //     getRandWord(toLearn)
-  // }
+  function incorrectBtn(){
+      getRandWord(toLearn)
+  }
 
-  // function incorrectBtn(){
-  //     getRandWord(toLearn)
-  // }
-
-  // function endOfDeck(){
-  //   if (toLearn.length === 0) {
-  //     return "Deck completed: last word!"
-  //   }
-  // }
+  function endOfDeck(){
+    if (toLearn.length === 0) {
+      return "Deck completed: last word!"
+    }
+  }
 
 return (
 <div>
@@ -65,18 +63,20 @@ return (
 			<div onClick= {flipCard} className={`card ${currWord.flipped? "flipped": "" }`}>
 				<div className="card-inner">
           {currWord.flipped? 
-            <CardBack 
+              <CardBack 
               word= {currWord}
               handleClick= {flipCard}
-            />
-            : <CardFront 
+              /> 
+              :<CardFront 
               word= {currWord}
               handleClick= {flipCard}
-            /> 
+              />
           }
 				</div>
 			</div>
-      <Buttons />
+      <Buttons 
+        handleCorrect={correctBtn}
+        handleIncorrect={incorrectBtn}/>
 		</div>
 )
 }
