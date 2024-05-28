@@ -4,6 +4,7 @@ import CardFront from './components/CardFront'
 import CardBack from './components/CardBack'
 import Buttons from './components/Buttons'
 import {hsk3} from './data'
+import BatchButtons from './components/BatchButtons'
 
 export default function App() {
   const [currWord, setCurrWord] = React.useState({
@@ -15,6 +16,23 @@ export default function App() {
   }) 
   
   const [toLearn, setToLearn] = React.useState(hsk3)
+  const [batch, setBatch] = React.useState([])
+
+  function createBatches(){
+    // update toLearn with subarrays of batches
+    const batches = []
+    for (let i=0; i <toLearn.length; i++){
+      batches.push(toLearn.slice(i, i+25))
+    }
+    setToLearn(batches)
+  }
+  createBatches()
+
+  function handleBatchClick(e){
+    // selected batch number is used to get index of corresponding batch subarray in toLearn
+    const batchSelected = e.target.value 
+    setBatch(toLearn[batchSelected -1])
+  }
 
   function getRandWord() {
     console.log(toLearn)
@@ -37,7 +55,7 @@ export default function App() {
     })
   }
   function correctBtn(){
-    const newArr = toLearn.filter(word => word.English !== currWord.English) 
+    const newArr = batch.filter(word => word.English !== currWord.English) 
     setToLearn(newArr)
     getRandWord(newArr)
     endOfDeck()
@@ -58,6 +76,11 @@ return (
 			<header>
 				<h1> Vocabulary Builder </h1>
 			</header>
+
+      <BatchButtons 
+        toLearn={toLearn}
+        handleClick={handleBatchClick}
+      />
 
       <button className="start-btn" onClick={()=>getRandWord()}>Start studying!</button>
 			<div onClick= {flipCard} className={`card ${currWord.flipped? "flipped": "" }`}>

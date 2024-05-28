@@ -153,3 +153,8 @@ button {
 .english {
   font-family: "Libre Baskerville", "Black Han Sans";
 }
+
+.batch-btns {
+  color: black;
+  size: 2em;
+}
