@@ -18,15 +18,18 @@ export default function App() {
   const [toLearn, setToLearn] = React.useState(hsk3)
   const [batch, setBatch] = React.useState([])
 
-  function createBatches(){
-    // update toLearn with subarrays of batches
-    const batches = []
-    for (let i=0; i <toLearn.length; i++){
-      batches.push(toLearn.slice(i, i+25))
+  React.useEffect(()=>{
+    function createBatches(){
+      // update toLearn with subarrays of batches
+      const batches = []
+      for (let i=0; i <toLearn.length; i++){
+        batches.push(toLearn.slice(i, i+35))
+      }
+      setToLearn(batches)
+      console.log("toLearn", toLearn)
     }
-    setToLearn(batches)
-  }
-  createBatches()
+    createBatches()
+  },[])
 
   function handleBatchClick(e){
     // selected batch number is used to get index of corresponding batch subarray in toLearn
@@ -36,8 +39,8 @@ export default function App() {
 
   function getRandWord() {
     console.log(toLearn)
-    const randIndex = Math.floor(Math.random() * toLearn.length)
-    const randWord = toLearn[randIndex]
+    const randIndex = Math.floor(Math.random() * batch.length)
+    const randWord = batch[randIndex]
     console.log("randword", randWord)
     setCurrWord({
       Chinese: randWord.Chinese,
@@ -56,17 +59,17 @@ export default function App() {
   }
   function correctBtn(){
     const newArr = batch.filter(word => word.English !== currWord.English) 
-    setToLearn(newArr)
+    setBatch(newArr)
     getRandWord(newArr)
     endOfDeck()
 }
 
   function incorrectBtn(){
-      getRandWord(toLearn)
+      getRandWord(batch)
   }
 
   function endOfDeck(){
-    if (toLearn.length === 0) {
+    if (batch.length === 0) {
       return "Deck completed: last word!"
     }
   }
@@ -76,7 +79,7 @@ return (
 			<header>
 				<h1> Vocabulary Builder </h1>
 			</header>
-
+    
       <BatchButtons 
         toLearn={toLearn}
         handleClick={handleBatchClick}

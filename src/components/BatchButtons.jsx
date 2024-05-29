@@ -1,24 +1,23 @@
 import React from 'react'
 
+
 export default function BatchButtons({toLearn, handleClick}) {
 
-const batchEle = (count) => {
-    count = 0;
-    for (let i=0; i<{toLearn}.length; i++) {
-        count+=1
-        return (
-            <div className='batch-btns'>
-                <button onClick={()=>handleClick} className={`batch ${count}`}>{count}</button>
-            </div>
-           
-        )
-    }
-       
-}
+    const batchEle = toLearn.map((_, i) => {
+        return (<div key={`batch${i+1}`} className='batch-btns'>
+                    <button onClick={()=>handleClick} className={`batch${i+1}`}>{i + 1}</button>
+                </div>)   
+})
+    console.log(batchEle)
+
     return(
-        <div className='wrapper'>
+        <div>
+            <h3>Choose your batch of vocabulary words</h3>
+            <div className='wrapper'>
             {batchEle}
+            </div>
         </div>
+        
     )
 
     
