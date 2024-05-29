@@ -24,13 +24,14 @@ export default function App() {
       const batches = []
       for (let i=0; i <toLearn.length; i++){
         batches.push(toLearn.slice(i, i+35))
+        i+=35
       }
       setToLearn(batches)
-      console.log("toLearn", toLearn)
     }
     createBatches()
   },[])
-
+  console.log("toLearn", toLearn)
+  
   function handleBatchClick(e){
     // selected batch number is used to get index of corresponding batch subarray in toLearn
     const batchSelected = e.target.value 
