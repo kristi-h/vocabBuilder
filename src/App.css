@@ -63,7 +63,7 @@ img {
 
 @media (min-height: 330px) {
   .card {
-      margin-top: 80px;
+      margin-top: 10px;
  }
 }
 
@@ -163,4 +163,11 @@ button {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-gap: 5px;
+}
+
+.enter-batch-btn {
+  margin-left: 7em;
+  margin-bottom: 5em;
+  justify-content: center;
+  align-items: center;
 }

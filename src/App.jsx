@@ -17,6 +17,8 @@ export default function App() {
   
   const [toLearn, setToLearn] = React.useState(hsk3)
   const [batch, setBatch] = React.useState([])
+  const [isStudying, setIsStudying] = React.useState(false)
+  const [showBatches, setShowBatches] = React.useState(false)
 
   React.useEffect(()=>{
     function createBatches(){
@@ -30,22 +32,25 @@ export default function App() {
     }
     createBatches()
   },[])
-  console.log("toLearn", toLearn)
-  
-  React.useEffect(()=>{
-    function handleBatchClick(e){
-      // selected batch number is used to get index of corresponding batch subarray in toLearn
-      const batchSelected = e.target.value 
-      console.log(batchSelected)
-      setBatch(toLearn[batchSelected -1])
-    }
-  },[batch])
+
+  function showBatchBtns(){ 
+    console.log("batchbtnclick")
+    setShowBatches(!showBatches)
+  }
+
+  function handleBatchClick(e){
+    // selected batch number is used to get index of corresponding batch subarray in toLearn
+    const batchSelected = e.target.value 
+    console.log(batchSelected)
+    setBatch(toLearn[batchSelected -1])
+  }
 
   function getRandWord() {
     console.log("batch", batch)
     const randIndex = Math.floor(Math.random() * batch.length)
     const randWord = batch[randIndex]
-    console.log("randword", randWord)
+    setIsStudying(!isStudying)
+    setShowBatches(!showBatches)
     
     setCurrWord({
       Chinese: randWord.Chinese,
@@ -75,22 +80,24 @@ export default function App() {
 
   function endOfDeck(){
     if (batch.length === 0) {
-      return "Deck completed: last word!"
+      return setIsStudying(isStudying === false)
     }
   }
 
 return (
-<div>
+<div className='game-container'>
 			<header>
 				<h1> Vocabulary Builder </h1>
 			</header>
     
-      <BatchButtons 
-        toLearn={toLearn}
-        handleClick={handleBatchClick}
-      />
+      {showBatches && <BatchButtons 
+      toLearn={toLearn}
+      handleBatchClick={handleBatchClick}
+      getRandWord={getRandWord}
+      />}
 
-      <button className="start-btn" onClick={()=>getRandWord()}>Start studying!</button>
+      <button  className="enter-batch-btn" onClick={showBatchBtns}> Pick a batch</button>
+      
 			<div onClick= {flipCard} className={`card ${currWord.flipped? "flipped": "" }`}>
 				<div className="card-inner">
           {currWord.flipped? 
@@ -108,7 +115,7 @@ return (
       <Buttons 
         handleCorrect={correctBtn}
         handleIncorrect={incorrectBtn}/>
-		</div>
+</div>
 )
 }
 
