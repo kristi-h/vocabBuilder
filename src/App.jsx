@@ -32,17 +32,21 @@ export default function App() {
   },[])
   console.log("toLearn", toLearn)
   
-  function handleBatchClick(e){
-    // selected batch number is used to get index of corresponding batch subarray in toLearn
-    const batchSelected = e.target.value 
-    setBatch(toLearn[batchSelected -1])
-  }
+  React.useEffect(()=>{
+    function handleBatchClick(e){
+      // selected batch number is used to get index of corresponding batch subarray in toLearn
+      const batchSelected = e.target.value 
+      console.log(batchSelected)
+      setBatch(toLearn[batchSelected -1])
+    }
+  },[batch])
 
   function getRandWord() {
-    console.log(toLearn)
+    console.log("batch", batch)
     const randIndex = Math.floor(Math.random() * batch.length)
     const randWord = batch[randIndex]
     console.log("randword", randWord)
+    
     setCurrWord({
       Chinese: randWord.Chinese,
       Pinyin: randWord.Pinyin,
