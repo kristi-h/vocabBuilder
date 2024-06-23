@@ -43,14 +43,19 @@ export default function App() {
     const batchSelected = e.target.value 
     console.log(batchSelected)
     setBatch(toLearn[batchSelected -1])
+    getRandWord()
+  }
+
+  function startStudy(){
+    getRandWord()
+    setShowBatches(showBatches === false)
+    setIsStudying(!isStudying)
   }
 
   function getRandWord() {
     console.log("batch", batch)
     const randIndex = Math.floor(Math.random() * batch.length)
     const randWord = batch[randIndex]
-    setIsStudying(!isStudying)
-    setShowBatches(!showBatches)
     
     setCurrWord({
       Chinese: randWord.Chinese,
@@ -93,7 +98,8 @@ return (
       {showBatches && <BatchButtons 
       toLearn={toLearn}
       handleBatchClick={handleBatchClick}
-      getRandWord={getRandWord}
+      startBtn={startStudy}
+      
       />}
 
       <button  className="enter-batch-btn" onClick={showBatchBtns}> Pick a batch</button>

@@ -8,8 +8,22 @@
   align-items: center;
 }
 
+.enter-batch-btn:hover{
+  background-image: linear-gradient(to right, #31b0de,#28c8f9 );
+}
+
+.enter-batch-btn:active{
+  background-image: linear-gradient(to right, #31b0de,#2863f9 );
+}
+
 .start-btn:hover {
   background-image: linear-gradient(to right, #31b0de,#2863f9 );
+}
+
+.architects-daughter-regular {
+  font-family: "Architects Daughter", cursive;
+  font-weight: 400;
+  font-style: normal;
 }
 
 body {
@@ -43,8 +57,8 @@ header {
   justify-content: center;
   align-items: center;
   gap: 10px;
-  font-family: "Libre Baskerville";
-  color: #092371;
+  font-family: "Architects Daughter";
+  color: black;
   text-align: center;
   padding: 0 20px;
 }
@@ -124,6 +138,16 @@ button {
   padding: 1em 1em;
   border-radius: 50%;
   border-radius: 50% 20% / 10% 40%;
+  font-family: "Architects Daughter"
+}
+
+.num-btn:hover {
+  cursor: pointer;
+  background-image: linear-gradient(to right, #31b0de,#28c8f9 );
+}
+
+.num-btn:active {
+  background-image: linear-gradient(to right, #31b0de,#2863f9 );
 }
 
 #incorrect {
@@ -142,16 +166,8 @@ button {
   background-image: linear-gradient(to right, #31de3a,#3ab943 );
 }
 
-.pinyin {
-  font-family: "Noto Sans Chinese Traditional";
-}
-
-.chinese {
-  font-family: "Noto Sans Chinese Traditional";
-}
-
-.english {
-  font-family: "Libre Baskerville", "Black Han Sans";
+.flashcard-word {
+  font-family: "Architects Daughter";
 }
 
 .batch-btns {
