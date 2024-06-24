@@ -64,11 +64,11 @@ header {
 }
 
 .header-container {
-  min-height: 50px;
+  min-height: 350px;
 }
 
 batch-container {
-  min-height: 50px;
+  min-height: 350px;
 }
 
 img {
