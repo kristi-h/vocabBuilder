@@ -61,14 +61,15 @@ header {
   color: black;
   text-align: center;
   padding: 0 20px;
+  min-height: 50px;
 }
 
 .header-container {
-  min-height: 350px;
+  min-height: 250px;
 }
 
-batch-container {
-  min-height: 350px;
+.batch-container {
+  min-height: 250px;
 }
 
 img {
