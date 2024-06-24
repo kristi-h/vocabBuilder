@@ -63,6 +63,14 @@ header {
   padding: 0 20px;
 }
 
+.header-container {
+  min-height: 350px;
+}
+
+batch-container {
+  min-height: 350px;
+}
+
 img {
   width: 50px;
   filter: invert(86%) sepia(17%) saturate(7255%) hue-rotate(204deg) brightness(103%) contrast(105%);
