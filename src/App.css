@@ -154,7 +154,7 @@ button {
   background-image: linear-gradient(to right, #31b0de,#28c8f9 );
 }
 
-.num-btn:active {
+.num-btn:active, .num-btn:focus {
   background-image: linear-gradient(to right, #31b0de,#2863f9 );
 }
 
