@@ -91,16 +91,18 @@ export default function App() {
 
 return (
 <div className='game-container'>
+  <div className='header-container'>
 			<header>
 				<h1> Vocabulary Builder </h1>
 			</header>
-    
+  </div>
+  <div className='batch-container'>
       {showBatches && <BatchButtons 
       toLearn={toLearn}
       handleBatchClick={handleBatchClick}
       startBtn={startStudy}
-      
       />}
+  </div>
 
       <button  className="enter-batch-btn" onClick={showBatchBtns}> Pick a batch</button>
       
