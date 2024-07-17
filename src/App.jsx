@@ -15,6 +15,7 @@ export default function App() {
   correct: false
   }) 
   
+  const [lang, setLang] = React.useState()
   const [toLearn, setToLearn] = React.useState(hsk3)
   const [batch, setBatch] = React.useState([])
   const [isStudying, setIsStudying] = React.useState(false)
@@ -103,7 +104,7 @@ return (
       startBtn={startStudy}
       />}
   </div>
-
+      <button  className="choose-lang" onClick={chooseLang}> Pick a language to study! </button>
       <button  className="enter-batch-btn" onClick={showBatchBtns}> Pick a batch</button>
       
 			<div onClick= {flipCard} className={`card ${currWord.flipped? "flipped": "" }`}>
