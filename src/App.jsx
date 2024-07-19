@@ -3,7 +3,7 @@ import './App.css'
 import CardFront from './components/CardFront'
 import CardBack from './components/CardBack'
 import Buttons from './components/Buttons'
-import {hsk3} from './data'
+import {hsk3} from './chineseData'
 import BatchButtons from './components/BatchButtons'
 
 export default function App() {
@@ -90,6 +90,15 @@ export default function App() {
     }
   }
 
+  function chooseLang(){
+    const list = ["Spanish", "Mandarin"]
+    if (list.indexOf(lang)=== list.length-1){
+      setLang(list[0])
+    } else {
+      setLang(list.indexOf(lang)+1)
+    }
+  }
+
 return (
 <div className='game-container'>
   <div className='header-container'>
@@ -104,7 +113,7 @@ return (
       startBtn={startStudy}
       />}
   </div>
-      <button  className="choose-lang" onClick={chooseLang}> Pick a language to study! </button>
+      <button  className="choose-lang" onClick={chooseLang}> {lang} </button>
       <button  className="enter-batch-btn" onClick={showBatchBtns}> Pick a batch</button>
       
 			<div onClick= {flipCard} className={`card ${currWord.flipped? "flipped": "" }`}>
